@@ -1,0 +1,24 @@
+-#:javascript
+-#  $(document).on('ready page:load', function() {
+-#  return CountryStateSelect({
+-#    country_id: "country_field_id",
+-#    state_id: "state_field_id"
+-#    });
+-#  });
+
+= simple_form_for(@business) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name, input_html: { class: 'form-control' }
+    %br
+    = f.input :category, :collection => ['Bakery', 'Bar', 'Coffee Shop', 'Fast Food', 'Food Truck', 'Restaurant'], as: :select
+    %br
+    = f.input :address, input_html: { class: 'form-control' }
+
+    -#- options = { form: f, field_names: { :country => :country_field, :state => :state_field } }
+    -#= f.input :country_field, collection: CountryStateSelect.countries_collection
+    -#= f.input :state_field, CountryStateSelect.state_options(options)
+  %br
+  .form-actions
+    = f.button :submit, class: "btn btn-primary"

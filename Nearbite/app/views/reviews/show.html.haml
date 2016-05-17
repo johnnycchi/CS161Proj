@@ -1,0 +1,43 @@
+.main_content
+  #review_top.row
+    .col-md-4
+      = image_tag @review.image.url(:medium), class: "review_image"
+    .col-md-8
+      #review_info
+        %h1= @review.title
+        %p.description= @review.description
+        %p
+          Submitted by
+          = @review.user.email
+
+      = link_to "Back", root_path, class: "btn btn-default"
+      - if user_signed_in?
+        - if current_user.email == @review.user.email
+          = link_to "Edit", edit_review_path, class: "btn btn-default"
+          = link_to "Delete", review_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"
+  .row
+    .col-md-4
+    .col-md-8
+      #review_info
+        %h2= "Comments"
+        %p
+          - @review.comments.each do |c|
+            = c.user
+            = "wrote:" 
+            = c.body
+            %p
+        
+        %p
+        - if current_user
+          = form_for([@review, @review.comments.build]) do |f|
+            %div{:class => "field"}
+              = f.label "User"
+              %p
+              = f.text_field :user, :value => current_user.email, :readonly => "true"
+            %p
+            %div{:class => "field"}
+              = f.label "Comment"
+              %p
+              = f.text_area :body
+            %div{:class => "actions"}
+              = f.submit
