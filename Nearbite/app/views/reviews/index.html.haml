@@ -1,9 +1,0 @@
-- @reviews.each_slice(3) do |review|
-  .row
-    -@reviews.each do |review|
-      .col-md-4
-        .review
-          .image_wrapper
-            = link_to review do
-              = image_tag review.image.url(:medium)
-          %h2= link_to review.title, review
