@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		thePlayer = FindObjectOfType<PlayerController> ();
 		playerStartPoint = thePlayer.transform.position;
+
 	}
 	
 	// Update is called once per frame
