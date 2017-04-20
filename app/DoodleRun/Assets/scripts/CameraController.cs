@@ -7,7 +7,8 @@ public class CameraController : MonoBehaviour {
 	public PlayerController thePlayer;
 
 	private Vector3 playerPos;
-	private float distanceToMove;
+	private float distanceToMoveX;
+	private float distanceToMoveY;
 
 	// Use this for initialization
 	void Start () {
@@ -18,8 +19,10 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		distanceToMove = thePlayer.transform.position.x - playerPos.x;
-		transform.position = new Vector3 (transform.position.x + distanceToMove, transform.position.y, transform.position.z);
+		distanceToMoveX = thePlayer.transform.position.x - playerPos.x;
+		distanceToMoveY = thePlayer.transform.position.y - playerPos.y;
+
+		transform.position = new Vector3 (transform.position.x + distanceToMoveX, transform.position.y + distanceToMoveY, transform.position.z);
 		playerPos = thePlayer.transform.position;
 	}
 }
