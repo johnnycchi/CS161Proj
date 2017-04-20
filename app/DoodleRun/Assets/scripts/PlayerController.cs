@@ -11,9 +11,12 @@ public class PlayerController : MonoBehaviour {
 	public bool grounded;
 	public LayerMask floor;
 
+	public GameManager theGameManager;
+
 	private Collider2D myCollider;
 
 	private Rigidbody2D playerBody;
+
 
 	// Use this for initialization
 	void Start () {
@@ -35,5 +38,11 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 			
+	}
+
+	void OnCollisionEnter2D (Collision2D other) {
+		if (other.gameObject.tag == "killbox") {
+			theGameManager.RestartLevel();
+		}
 	}
 }
